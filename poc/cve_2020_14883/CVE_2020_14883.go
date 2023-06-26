@@ -1,9 +1,9 @@
 package cve_2020_14883
 
 import (
+	"WeblogicScan/config"
 	"fmt"
 	"github.com/fatih/color"
-	"qi4l/config"
 )
 
 func cve_2020_14883(url string) {

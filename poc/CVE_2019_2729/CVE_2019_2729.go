@@ -1,10 +1,10 @@
 package CVE_2019_2729
 
 import (
+	"WeblogicScan/config"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"qi4l/config"
 	"strings"
 	"time"
 )

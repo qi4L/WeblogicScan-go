@@ -1,9 +1,9 @@
 package cve_2020_14750
 
 import (
+	"WeblogicScan/config"
 	"fmt"
 	"github.com/fatih/color"
-	"qi4l/config"
 	"strings"
 )
 

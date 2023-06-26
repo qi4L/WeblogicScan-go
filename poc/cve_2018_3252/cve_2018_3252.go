@@ -1,9 +1,9 @@
 package cve_2018_3252
 
 import (
+	"WeblogicScan/config"
 	"fmt"
 	"github.com/fatih/color"
-	"qi4l/config"
 )
 
 func cve_2018_3252(url string) {

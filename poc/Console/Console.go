@@ -1,9 +1,9 @@
 package Console
 
 import (
+	"WeblogicScan/config"
 	"fmt"
 	"net/http"
-	"qi4l/config"
 )
 
 func islive(u string, port string) int {

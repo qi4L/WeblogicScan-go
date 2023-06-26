@@ -1,9 +1,9 @@
 package main
 
 import (
+	"WeblogicScan/utils"
 	"flag"
 	"fmt"
-	"qi4l/utils"
 )
 
 var (

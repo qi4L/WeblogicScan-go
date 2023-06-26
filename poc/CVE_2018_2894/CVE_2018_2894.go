@@ -1,9 +1,9 @@
 package CVE_2018_2894
 
 import (
+	"WeblogicScan/config"
 	"fmt"
 	"net/http"
-	"qi4l/config"
 )
 
 var VUL = "CVE-2018-2894"

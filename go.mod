@@ -1,4 +1,4 @@
-module qi4l
+module WeblogicScan
 
 go 1.20
 

@@ -1,11 +1,11 @@
 package cve_2023_21839
 
 import (
+	giop "WeblogicScan/poc/cve_2023_21839/src"
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
 	"net"
-	giop "qi4l/poc/cve_2023_21839/src"
 	"strconv"
 	"strings"
 )

@@ -1,8 +1,8 @@
 package CVE_2014_4210
 
 import (
+	"WeblogicScan/config"
 	"fmt"
-	"qi4l/config"
 	//"io/ioutil"
 	"net/http"
 	//"os"
