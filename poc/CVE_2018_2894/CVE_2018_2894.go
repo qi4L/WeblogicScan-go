@@ -2,7 +2,7 @@ package CVE_2018_2894
 
 import (
 	"WeblogicScan/config"
-	"fmt"
+	"github.com/gookit/color"
 	"net/http"
 )
 
@@ -35,9 +35,9 @@ func islive(u string, port string) int {
 func Run(u string, port string) {
 
 	if islive(u, port) != 404 {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 
 }

@@ -2,7 +2,7 @@ package Console
 
 import (
 	"WeblogicScan/config"
-	"fmt"
+	"github.com/gookit/color"
 	"net/http"
 )
 
@@ -34,9 +34,9 @@ func Run(u string, port string) {
 
 	if islive(u, port) == 200 {
 		url := "http://" + u + ":" + port + "/console/login/LoginForm.jsp"
-		fmt.Printf("[+] The target Weblogic console address is exposed!\n[+] The path is: %s \n[+] Please try weak password blasting!\n", url)
+		color.Green.Printf("[+] The target Weblogic console address is exposed!\n[+] The path is: %s \n[+] Please try weak password blasting!\n", url)
 	} else {
-		fmt.Printf("[-] Target Weblogic console address not found!\n")
+		color.Red.Printf("[-] Target Weblogic console address not found!\n")
 	}
 
 }

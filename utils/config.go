@@ -33,16 +33,18 @@ import (
 	"WeblogicScan/poc/cve_2020_2883"
 	"WeblogicScan/poc/cve_2023_21839"
 	"fmt"
+	"sync"
 )
 
 type WorkExp struct {
-	Url   string
-	Port  string
-	Rip   string
-	Rport string
-	EXP   string
-	Cmd   string
-	Ldap  string
+	Url    string
+	Port   string
+	Rip    string
+	Rport  string
+	EXP    string
+	Cmd    string
+	Ldap   string
+	Thread int
 }
 
 func (c *WorkExp) WeblogicScanRun() {
@@ -79,34 +81,121 @@ func (c *WorkExp) WeblogicScanRun() {
 		fmt.Println("The entered EXP does not exist")
 	}
 
-	Console.Run(c.Url, c.Port)
-	CVE_2014_4210.Run(c.Url, c.Port)
+	var wg sync.WaitGroup
+	wg.Add(23)
+	go func() {
+		Console.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 
-	CVE_2016_0638.Run(c.Url, c.Port)
-	CVE_2016_3510.Run(c.Url, c.Port)
+	go func() {
+		CVE_2014_4210.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 
-	CVE_2017_10271.Run(c.Url, c.Port)
-	CVE_2017_3248.Run(c.Url, c.Port)
-	CVE_2017_3506.Run(c.Url, c.Port)
+	go func() {
+		CVE_2016_0638.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 
-	CVE_2018_2628.Run(c.Url, c.Port)
-	CVE_2018_2893.Run(c.Url, c.Port)
-	CVE_2018_2894.Run(c.Url, c.Port)
-	cve_2018_3191.Run(c.Url, c.Port)
-	cve_2018_3245.Run(c.Url, c.Port)
-	cve_2018_3252.Run(c.Url, c.Port)
+	go func() {
+		CVE_2016_3510.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 
-	CVE_2019_2725.Run(c.Url, c.Port)
-	CVE_2019_2729.Run(c.Url, c.Port)
-	CVE_2019_2890.Run(c.Url, c.Port)
+	go func() {
+		CVE_2017_10271.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 
-	cve_2020_2551.Run(c.Url, c.Port)
-	cve_2020_2555.Run(c.Url, c.Port, c.Cmd)
-	cve_2020_2883.Run(c.Url, c.Port, c.Cmd)
-	cve_2020_14750.Run(c.Url, c.Port)
-	cve_2020_14882.Run(c.Url, c.Port)
-	cve_2020_14883.Run(c.Url, c.Port)
+	go func() {
+		CVE_2017_3248.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 
+	go func() {
+		CVE_2017_3506.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		CVE_2018_2628.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		CVE_2018_2893.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		CVE_2018_2894.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2018_3191.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2018_3245.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2018_3252.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		CVE_2019_2725.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		CVE_2019_2729.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		CVE_2019_2890.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2020_2551.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2020_2555.Run(c.Url, c.Port, c.Cmd)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2020_2883.Run(c.Url, c.Port, c.Cmd)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2020_14750.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2020_14882.Run(c.Url, c.Port)
+		wg.Done()
+	}()
+
+	go func() {
+		cve_2020_14883.Run(c.Url, c.Port)
+		wg.Done()
+	}()
 	// 报错说明不存在，不报错且ldap服务有反应说明利用成功
-	cve_2023_21839.Run(c.Url, c.Port, c.Ldap)
+	go func() {
+		cve_2023_21839.Run(c.Url, c.Port, c.Ldap)
+		wg.Done()
+	}()
+	wg.Wait()
 }

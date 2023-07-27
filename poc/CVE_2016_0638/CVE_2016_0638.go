@@ -3,6 +3,7 @@ package CVE_2016_0638
 import (
 	"encoding/hex"
 	"fmt"
+	"github.com/gookit/color"
 	"net"
 	//"os"
 	"regexp"
@@ -20,7 +21,7 @@ func t3handshake(conn net.Conn, server_addr string) {
 	hex_data, _ := hex.DecodeString("74332031322e322e310a41533a3235350a484c3a31390a4d533a31303030303030300a0a")
 	_, err := conn.Write(hex_data)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	time.Sleep(1 * time.Second)
@@ -70,9 +71,9 @@ func checkVul(res []byte, index int) {
 	p, _ := regexp.Match(VER_SIG[index], res)
 
 	if p {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 }
 
@@ -86,7 +87,7 @@ func Run(rip string, rport string) {
 
 	conn, err := net.DialTimeout("tcp4", server_addr, 10*time.Second)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer conn.Close()

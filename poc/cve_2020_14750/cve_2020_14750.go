@@ -2,8 +2,7 @@ package cve_2020_14750
 
 import (
 	"WeblogicScan/config"
-	"fmt"
-	"github.com/fatih/color"
+	"github.com/gookit/color"
 	"strings"
 )
 
@@ -15,13 +14,13 @@ func cve_2020_14750(url string) {
 			SetHeader("User-Agent", config.Fakeua()).
 			Get(url)
 		if err != nil { // Error handling.
-			fmt.Printf("[-] Target weblogic not detected CVE-2020-14750\n")
+			color.Red.Printf("[-] Target weblogic not detected CVE-2020-14750\n")
 			return
 		}
 		if strings.Contains(resp.String(), "id=\"welcome\"") {
-			color.Red("*Found cve-2020-14750！")
+			color.Red.Printf("*Found cve-2020-14750！")
 		} else {
-			fmt.Printf("[-] Target weblogic not detected CVE-2020-14750\n")
+			color.Red.Printf("[-] Target weblogic not detected CVE-2020-14750\n")
 			return
 		}
 		return

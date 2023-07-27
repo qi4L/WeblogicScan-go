@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+	"github.com/gookit/color"
 	"net"
 	"time"
 )
@@ -53,14 +54,14 @@ func Run(rip string, rport string) {
 
 	conn, err := net.DialTimeout("tcp4", server_addr, 10*time.Second)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer conn.Close()
 	res := doNoe(conn)
 	if res != nil {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 }

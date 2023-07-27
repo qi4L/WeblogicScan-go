@@ -7,13 +7,14 @@ import (
 )
 
 var (
-	Url   string
-	Port  string
-	EXP   string
-	Cmd   string
-	Ldap  string
-	Rip   string
-	Rport string
+	Url    string
+	Port   string
+	EXP    string
+	Cmd    string
+	Ldap   string
+	Rip    string
+	Rport  string
+	Thread int
 )
 
 func usage() {

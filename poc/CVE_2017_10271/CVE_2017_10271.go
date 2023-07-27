@@ -2,7 +2,7 @@ package CVE_2017_10271
 
 import (
 	"crypto/tls"
-	"fmt"
+	"github.com/gookit/color"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -46,19 +46,19 @@ func poc(server_addr string) {
 	request.Header.Set("User-Agent", "ceshi/0.0.1")
 	request.Header.Set("Content-Type", "text/xml")
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	response, err := client.Do(request)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	//fmt.Println("body:", string(body))
@@ -67,9 +67,9 @@ func poc(server_addr string) {
 	//b := strings.Index(string(body), "<faultstring>0")
 
 	if (strings.Contains(string(body), "<faultstring>java.lang.ProcessBuilder")) || (strings.Contains(string(body), "<faultstring>0")) {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 
 }

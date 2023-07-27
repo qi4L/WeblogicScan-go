@@ -3,6 +3,7 @@ package CVE_2019_2725
 import (
 	"crypto/tls"
 	"fmt"
+	"github.com/gookit/color"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -98,13 +99,13 @@ func Run(u string, port string) {
 	url := "http://" + u + ":" + port
 
 	if weblogic_10_3_6(url)[0] == "200" {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
-		fmt.Printf("[+] Your current permission is:  %s\n", strings.Replace(weblogic_10_3_6(url)[1], "whoami : \r\n", "", -1))
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] Your current permission is:  %s\n", strings.Replace(weblogic_10_3_6(url)[1], "whoami : \r\n", "", -1))
 	} else if weblogic_12_1_3(url)[0] == "200" {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
-		fmt.Printf("[+] Your current permission is:  %s\n", strings.Replace(weblogic_12_1_3(url)[1], "whoami : \r\n", "", -1))
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] Your current permission is:  %s\n", strings.Replace(weblogic_12_1_3(url)[1], "whoami : \r\n", "", -1))
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 
 }

@@ -2,7 +2,7 @@ package CVE_2014_4210
 
 import (
 	"WeblogicScan/config"
-	"fmt"
+	"github.com/gookit/color"
 	//"io/ioutil"
 	"net/http"
 	//"os"
@@ -36,9 +36,9 @@ func Run(u string, port string) {
 
 	if islive(u, port) == 200 {
 		url := "http://" + u + ":" + port + "/uddiexplorer/"
-		fmt.Printf("[+] The target Weblogic UDDI module is exposed!\n[+] The path is: %s \n[+] Please verify the SSRF vulnerability!\n", url)
+		color.Green.Print("[+] The target Weblogic UDDI module is exposed!\n[+] The path is: %s \n[+] Please verify the SSRF vulnerability!\n", url)
 	} else {
-		fmt.Printf("[-] The target Weblogic UDDI module default path does not exist!\n")
+		color.Red.Print("[-] The target Weblogic UDDI module default path does not exist!\n")
 	}
 
 }

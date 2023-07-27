@@ -3,6 +3,7 @@ package CVE_2016_3510
 import (
 	"encoding/hex"
 	"fmt"
+	"github.com/gookit/color"
 	"net"
 	"regexp"
 	"strconv"
@@ -69,9 +70,9 @@ func checkVul(res []byte, index int) {
 	p, _ := regexp.Match(VER_SIG[index], res)
 
 	if p {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 }
 
@@ -81,7 +82,7 @@ func Run(rip string, rport string) {
 
 	conn, err := net.DialTimeout("tcp4", server_addr, 10*time.Second)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 		return
 	}
 	defer conn.Close()

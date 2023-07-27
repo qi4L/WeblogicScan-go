@@ -2,8 +2,7 @@ package cve_2020_14882
 
 import (
 	"WeblogicScan/config"
-	"fmt"
-	"github.com/fatih/color"
+	"github.com/gookit/color"
 )
 
 func cve_2020_14882(url string) {
@@ -14,14 +13,14 @@ func cve_2020_14882(url string) {
 			SetHeader("User-Agent", config.Fakeua()).
 			Get(url)
 		if err != nil { // Error handling.
-			fmt.Printf("[-] Target weblogic not detected CVE-2020-14882\n")
+			color.Red.Printf("[-] Target weblogic not detected CVE-2020-14882\n")
 			return
 		}
 		if resp.Status == "200" {
-			color.Red("*Found cve-2020-14882！")
+			color.Green.Printf("*Found cve-2020-14882！")
 			return
 		} else {
-			fmt.Printf("[-] Target weblogic not detected CVE-2020-14882\n")
+			color.Red.Printf("[-] Target weblogic not detected CVE-2020-14882\n")
 		}
 		return
 	}

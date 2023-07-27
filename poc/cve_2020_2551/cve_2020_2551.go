@@ -2,7 +2,7 @@ package cve_2020_2551
 
 import (
 	"encoding/hex"
-	"fmt"
+	"github.com/gookit/color"
 	"net"
 	"regexp"
 	"time"
@@ -17,7 +17,7 @@ func doOne(conn net.Conn) []byte {
 	hex_data, _ := hex.DecodeString("47494f50010200030000001700000002000000000000000b4e616d6553657276696365")
 	_, err := conn.Write(hex_data)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected cve-2020-2551\n")
+		color.Red.Printf("[-] Target weblogic not detected cve-2020-2551\n")
 	}
 	time.Sleep(1 * time.Second)
 	buf := make([]byte, 1024)
@@ -41,9 +41,9 @@ func checkVul(res []byte, index int) {
 	p, _ := regexp.Match(VER_SIG[index], res)
 
 	if p {
-		fmt.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	} else {
-		fmt.Printf("[-] Target weblogic not detected %s\n", VUL)
+		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
 	}
 }
 
@@ -53,7 +53,7 @@ func Run(rip string, rport string) {
 
 	conn, err := net.DialTimeout("tcp4", server_addr, 10*time.Second)
 	if err != nil {
-		fmt.Printf("[-] Target weblogic not detected cve-2020-2551\n")
+		color.Red.Printf("[-] Target weblogic not detected cve-2020-2551\n")
 		return
 	}
 	defer conn.Close()
