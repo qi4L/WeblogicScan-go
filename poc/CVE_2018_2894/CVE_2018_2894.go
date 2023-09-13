@@ -35,9 +35,9 @@ func islive(u string, port string) int {
 func Run(u string, port string) {
 
 	if islive(u, port) != 404 {
-		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
-	} else {
 		color.Red.Printf("[-] Target weblogic not detected %s\n", VUL)
+	} else {
+		color.Green.Printf("[+] The target weblogic has a JAVA deserialization vulnerability: %s\n", VUL)
 	}
 
 }

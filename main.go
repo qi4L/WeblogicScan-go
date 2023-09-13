@@ -4,6 +4,7 @@ import (
 	"WeblogicScan/utils"
 	"flag"
 	"fmt"
+	"os"
 )
 
 var (
@@ -15,6 +16,7 @@ var (
 	Rip    string
 	Rport  string
 	Thread int
+	file   string
 )
 
 func usage() {
@@ -36,6 +38,7 @@ func usage() {
 
 func main() {
 	flag.StringVar(&Url, "u", "", "your target")
+	flag.StringVar(&file, "f", "", "Specify batch target")
 	flag.StringVar(&Port, "p", "", "you target Port")
 	flag.StringVar(&EXP, "e", "", "only detect")
 	flag.StringVar(&Cmd, "c", "calc.exe", "command")
@@ -45,10 +48,10 @@ func main() {
 	flag.Usage = usage
 	flag.Parse()
 
-	//if Url == "" || Port == "" {
-	//	usage()
-	//	os.Exit(0)
-	//}
+	if Port == "" {
+		usage()
+		os.Exit(0)
+	}
 
 	qi4l := utils.WorkExp{
 		Url:   Url,
@@ -59,5 +62,17 @@ func main() {
 		Rip:   Rip,
 		Rport: Rport,
 	}
+
+	lines, err := utils.ReadLinesFromFile(file)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	for _, line := range lines {
+		qi4l.Url = line
+		qi4l.WeblogicScanRun()
+	}
+
 	qi4l.WeblogicScanRun()
 }
