@@ -70,6 +70,7 @@ func main() {
 	}
 
 	for _, line := range lines {
+		fmt.Println("扫描 " + line + "的结果:")
 		qi4l.Url = line
 		qi4l.WeblogicScanRun()
 	}
