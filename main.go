@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 )
 
 var (
@@ -48,7 +49,7 @@ func main() {
 	flag.Usage = usage
 	flag.Parse()
 
-	if Port == "" {
+	if Port != "" && file != "" {
 		usage()
 		os.Exit(0)
 	}
@@ -71,7 +72,9 @@ func main() {
 
 	for _, line := range lines {
 		fmt.Println("扫描 " + line + "的结果:")
-		qi4l.Url = line
+		parts := strings.Split(line, ":")
+		qi4l.Url = parts[0]
+		qi4l.Port = parts[1]
 		qi4l.WeblogicScanRun()
 	}
 
